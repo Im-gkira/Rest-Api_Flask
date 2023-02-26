@@ -6,3 +6,4 @@ python-dotenv
 flask-migrate
 flask-jwt-extended
 passlib
+gunicorn
