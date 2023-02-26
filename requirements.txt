@@ -4,3 +4,4 @@ flask_sqlalchemy
 flask_smorest
 python-dotenv
 flask-migrate
+flask-jwt-extended
