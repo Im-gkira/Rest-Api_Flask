@@ -12,6 +12,11 @@ class PlainStoreSchema(Schema):
     name = fields.Str(required=True)
 
 
+class PlainTagSchema(Schema):
+    id = fields.Integer(dump_only=True)
+    name = fields.String(required=True)
+
+
 class UpdateItemSchema(Schema):
     name = fields.Str()
     price = fields.Float()
@@ -25,9 +30,15 @@ class ItemSchema(PlainItemSchema):
 
 class StoreSchema(PlainStoreSchema):
     items = fields.List(fields.Nested(PlainItemSchema(), dump_only=True))
+    tags = fields.List(fields.Nested(PlainTagSchema(), dump_only=True))
 
 
 class UserSchema(Schema):
     id = fields.Integer(dump_only=True)
     username = fields.Str(required=True)
     password = fields.Str(required=True, load_only=True)
+
+
+class TagSchema(PlainTagSchema):
+    store_id = fields.Integer(required=True, load_only=True)
+    store = fields.Nested(PlainStoreSchema(), dump_only=True)

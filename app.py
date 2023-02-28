@@ -3,7 +3,7 @@ from db import db
 from flask import Flask, jsonify
 from models import BlockedJwt
 from flask_smorest import Api
-from resources import ItemBlueprint, StoreBlueprint, UserBlueprint
+from resources import ItemBlueprint, StoreBlueprint, UserBlueprint, TagBlueprint
 from flask_jwt_extended import JWTManager
 from http import HTTPStatus
 from flask_migrate import Migrate
@@ -87,6 +87,7 @@ def create_app(db_url=None):
     api.register_blueprint(ItemBlueprint)
     api.register_blueprint(StoreBlueprint)
     app.register_blueprint(UserBlueprint)
+    app.register_blueprint(TagBlueprint)
     return app
 
 
